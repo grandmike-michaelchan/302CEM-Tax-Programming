@@ -32,16 +32,41 @@ def test():
     unittest.TextTestRunner(verbosity=2).run(suite)
 
 def single():
+    accumlate = 0
+    basic = 132000
+
     print("Single Tax Calculation")
     print("\n")
-    income = int(input("Input Income: "))
+    income = int(input("Input Annual Income: "))
+
+    # MPF calculation 
     if income > 360000:
         mpf = 18000
     elif income < 360000:  
         mpf = income * 5/100
     print("The MPF allowance is: ", mpf)
+
+    # Standard tax rate calculation
     standard = (income - mpf)*15/100
     print("Standard Rate Tax Total: ", standard)
+
+    # non standard tax rate calculation
+    netcharge = income - mpf - basic
+    if netcharge < 1:
+        accumlate = 0 
+    if income < 50000:
+        accumlate = income * 0.02
+    # elif income < 100000:
+    #     accumalte = 
+        
+    print("Non Standard Rate Tax Total: ", accumlate)
+
+    #Recommendation
+    if accumlate > standard:
+        print("You are recommended to use standard rate")
+
+
+    
 
 def main(argv):
         print("Welcome to Tax Calculator")
