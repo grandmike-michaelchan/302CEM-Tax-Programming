@@ -54,11 +54,18 @@ def single():
     netcharge = income - mpf - basic
     if netcharge < 1:
         accumlate = 0 
-    if income < 50000:
+    if netcharge < 50000:
         accumlate = income * 0.02
-    # elif income < 100000:
-    #     accumalte = 
-        
+    elif netcharge < 100000:
+        accumlate = 50000 * 0.02 + (netcharge - 50000) * 0.06
+    elif netcharge < 150000:
+        accumlate = 50000 * 0.02 + 50000 * 0.06 + (netcharge - 100000) * 0.1
+    elif netcharge < 200000:
+        accumlate = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + (netcharge - 150000) * 0.14
+    elif netcharge < 250000:
+        accumlate = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + 50000 * 0.14 + (netcharge - 200000) * 0.17
+    else:
+        accumlate = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + 50000 * 0.14 + (netcharge - 200000) * 0.17
     print("Non Standard Rate Tax Total: ", accumlate)
 
     #Recommendation
