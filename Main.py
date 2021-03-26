@@ -39,7 +39,7 @@ def main(argv):
         print("-------- Menu -------")
         print("1. Run the calculator")
         print("2. run the testing ")
-        choice = input ("Enter number: ") 
+        choice = int(input ("Enter number: "))
         
         # switcher= {
         #     case 1: 
@@ -52,6 +52,7 @@ def main(argv):
         # }
 
         if choice == 1:
+            print("Hello")
             hihi()
 
         if choice == 2:
