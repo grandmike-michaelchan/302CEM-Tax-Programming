@@ -31,29 +31,22 @@ def test():
     # verbosity 是調整執行測試時所輸出的細節
     unittest.TextTestRunner(verbosity=2).run(suite)
 
-def hihi():
-    print("This is the main program")
+def single():
+    print("Single Tax Calculation")
+    income = int(input("Input Income"))
+    mpf = int(input("Input MPF"))
 
 def main(argv):
         print("Welcome to Tax Calculator")
         print("-------- Menu -------")
-        print("1. Run the calculator")
-        print("2. run the testing ")
+        print("1. Run single tax calulation")
+        print("2. Run marriage tax calculation")
+        print("3. run the testing ")
         choice = int(input ("Enter number: "))
-        
-        # switcher= {
-        #     case 1: 
-        #         hihi();
-        #         break;
-
-        #     case 2: 
-        #         test(); 
-        #         break;
-        # }
 
         if choice == 1:
             print("Hello")
-            hihi()
+            single()
 
         if choice == 2:
             test()
