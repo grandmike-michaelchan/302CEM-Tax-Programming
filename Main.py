@@ -33,8 +33,15 @@ def test():
 
 def single():
     print("Single Tax Calculation")
-    income = int(input("Input Income"))
-    mpf = int(input("Input MPF"))
+    print("\n")
+    income = int(input("Input Income: "))
+    if income > 360000:
+        mpf = 18000
+    elif income < 360000:  
+        mpf = income * 5/100
+    print("The MPF allowance is: ", mpf)
+    standard = (income - mpf)*15/100
+    print("Standard Rate Tax Total: ", standard)
 
 def main(argv):
         print("Welcome to Tax Calculator")
@@ -45,7 +52,6 @@ def main(argv):
         choice = int(input ("Enter number: "))
 
         if choice == 1:
-            print("Hello")
             single()
 
         if choice == 2:
