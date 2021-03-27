@@ -31,29 +31,58 @@ def test():
     # verbosity 是調整執行測試時所輸出的細節
     unittest.TextTestRunner(verbosity=2).run(suite)
 
-def hihi():
-    print("This is the main program")
+def single():
+    accumlate = 0
+    basic = 132000
+
+    print("Single Tax Calculation")
+    print("\n")
+    income = int(input("Input Annual Income: "))
+
+    # MPF calculation 
+    if income > 360000:
+        mpf = 18000
+    elif income < 360000:  
+        mpf = income * 5/100
+    print("The MPF allowance is: ", mpf)
+
+    # Standard tax rate calculation
+    standard = (income - mpf)*15/100
+    print("Standard Rate Tax Total: ", standard)
+
+    # non standard tax rate calculation
+    netcharge = income - mpf - basic
+    if netcharge < 1:
+        accumlate = 0 
+    if netcharge < 50000:
+        accumlate = income * 0.02
+    elif netcharge < 100000:
+        accumlate = 50000 * 0.02 + (netcharge - 50000) * 0.06
+    elif netcharge < 150000:
+        accumlate = 50000 * 0.02 + 50000 * 0.06 + (netcharge - 100000) * 0.1
+    elif netcharge < 200000:
+        accumlate = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + (netcharge - 150000) * 0.14
+    elif netcharge < 250000:
+        accumlate = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + 50000 * 0.14 + (netcharge - 200000) * 0.17
+    else:
+        accumlate = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + 50000 * 0.14 + (netcharge - 200000) * 0.17
+    print("Non Standard Rate Tax Total: ", accumlate)
+
+    #Recommendation
+    if accumlate > standard:
+        print("You are recommended to use standard rate")
+#single ends
 
 def main(argv):
         print("Welcome to Tax Calculator")
         print("-------- Menu -------")
-        print("1. Run the calculator")
-        print("2. run the testing ")
+        print("1. Run single tax calulation")
+        print("2. Run marriage tax calculation")
+        print("3. run the testing ")
         choice = int(input ("Enter number: "))
-        
-        # switcher= {
-        #     case 1: 
-        #         hihi();
-        #         break;
-
-        #     case 2: 
-        #         test(); 
-        #         break;
-        # }
 
         if choice == 1:
-            print("Hello")
-            hihi()
+            single()
 
         if choice == 2:
             test()
