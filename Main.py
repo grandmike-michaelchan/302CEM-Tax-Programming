@@ -168,7 +168,8 @@ def marriage():
     print("--------------------------------------------------")
 
     # Self and spouse lowest tax rate total
-    print("The total of self and spouse lowest tax rate: $", A_Lowest + B_Lowest)
+    separate_total = A_Lowest + B_Lowest
+    print("The total of self and spouse lowest tax rate: $", separate_total)
 
     print("--------------------------------------------------")
     print("--------------------------------------------------")
@@ -195,8 +196,27 @@ def marriage():
         joint_accumlate = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + 50000 * 0.14 + (joint_netcharge - 200000) * 0.17
     else:
         joint_accumlate = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + 50000 * 0.14 + (joint_netcharge - 200000) * 0.17
-    print("Joint Non Standard Rate Tax Total: ", joint_accumlate)
+    print("Joint Non Standard Rate Tax Total: $", joint_accumlate)
     
+    joint_standard = (joint_income - joint_mpf) * 0.15
+    print("Joint Standard Rate Tax Total: $", joint_standard)
+
+    # Get lowest Rate
+    if joint_accumlate > joint_standard:
+        joint_Lowest = joint_standard
+        print("Self Standard rate is used: $", joint_Lowest)
+    else:
+        joint_Lowest = joint_accumlate
+        print ("Self non-standard rate is used: $", joint_Lowest)
+
+    print("--------------------------------------------------")
+    # Get Join and Separate Lowest
+    if joint_Lowest > separate_total:
+        final_Lowest = separate_total
+        print("Separate Taxation should be used: $", final_Lowest)
+    else:
+        final_Lowest = joint_Lowest
+        print ("Joint Assesment should be used: $", final_Lowest)
     # Joint ends
 
 
