@@ -71,7 +71,11 @@ def single():
     #Recommendation
     if accumlate > standard:
         print("You are recommended to use standard rate")
-#single ends
+    else:
+        print ("You are recommended to use non-standard rate")
+# single ends
+
+def marriage()
 
 def main(argv):
         print("Welcome to Tax Calculator")
@@ -85,7 +89,7 @@ def main(argv):
             single()
 
         if choice == 2:
-            test()
+            marriage()
             
 
 if __name__ == "__main__":
