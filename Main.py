@@ -71,9 +71,7 @@ def single():
     #Recommendation
     if accumlate > standard:
         print("You are recommended to use standard rate")
-
-
-    
+#single ends
 
 def main(argv):
         print("Welcome to Tax Calculator")
