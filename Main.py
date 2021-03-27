@@ -13,11 +13,11 @@ class AddTestCase(unittest.TestCase):
 
     def test_add(self):
         # The tax calculated value by hand
-        expected = 199;
-        result = add(*self.args);
+        expected = 199
+        result = add(*self.args)
         print("The result is: ", result)
         # assertEqual = Compare the diffrence between expected and actual result        
-        self.assertEqual(expected, result);
+        self.assertEqual(expected, result)
 
 # Functions to be tested, tax formula 
 def add(x, y):
@@ -75,7 +75,131 @@ def single():
         print ("You are recommended to use non-standard rate")
 # single ends
 
-def marriage()
+def marriage():
+    accumlate_A = 0
+    accumlate_B = 0
+    basic = 132000
+
+    print("Marriage Tax Calculation")
+    print("\n")
+    income_A = int(input("Input Self Annual Income: "))
+    income_B = int(input("Input Spouse Annual Income: "))
+
+    # A calculation
+    # Self MPF calculation 
+    if income_A > 360000:
+        mpf_A = 18000
+    elif income_A < 360000:  
+        mpf_A = income_A * 5/100
+    print("The Self MPF allowance is: ", mpf_A)
+
+    # Self Standard tax rate calculation
+    standard_A = (income_A - mpf_A)*15/100
+    print("Self Standard Rate Tax Total: ", standard_A)
+
+    # Self non standard tax rate calculation
+    netcharge_A = income_A - mpf_A - basic
+    if netcharge_A < 1:
+        accumlate_A = 0 
+    if netcharge_A < 50000:
+        accumlate_A = income_A * 0.02
+    elif netcharge_A < 100000:
+        accumlate_A = 50000 * 0.02 + (netcharge_A - 50000) * 0.06
+    elif netcharge_A < 150000:
+        accumlate_A = 50000 * 0.02 + 50000 * 0.06 + (netcharge_A - 100000) * 0.1
+    elif netcharge_A < 200000:
+        accumlate_A = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + (netcharge_A - 150000) * 0.14
+    elif netcharge_A < 250000:
+        accumlate_A = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + 50000 * 0.14 + (netcharge_A - 200000) * 0.17
+    else:
+        accumlate_A = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + 50000 * 0.14 + (netcharge_A - 200000) * 0.17
+    print("Self Non Standard Rate Tax Total: ", accumlate_A)
+
+    # Get lowest Rate
+    if accumlate_A > standard_A:
+        A_Lowest = standard_A
+        print("Self Standard rate is used: $", A_Lowest)
+    else:
+        A_Lowest = accumlate_A
+        print ("Self non-standard rate is used: $", A_Lowest)
+    # A ends
+
+    print("--------------------------------------------------")
+
+    # B calculation
+    # Self MPF calculation 
+    if income_B > 360000:
+        mpf_B = 18000
+    elif income_B < 360000:  
+        mpf_B = income_B * 5/100
+    print("The Spouse MPF allowance is: ", mpf_B)
+
+    # Self Standard tax rate calculation
+    standard_B = (income_B - mpf_B)*15/100
+    print("Spouse Standard Rate Tax Total: ", standard_B)
+
+    # Self non standard tax rate calculation
+    netcharge_B = income_B - mpf_B - basic
+    if netcharge_B < 1:
+        accumlate_B = 0 
+    if netcharge_B < 50000:
+        accumlate_B = income_B * 0.02
+    elif netcharge_B < 100000:
+        accumlate_B = 50000 * 0.02 + (netcharge_B - 50000) * 0.06
+    elif netcharge_B < 150000:
+        accumlate_B = 50000 * 0.02 + 50000 * 0.06 + (netcharge_B - 100000) * 0.1
+    elif netcharge_B < 200000:
+        accumlate_B = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + (netcharge_B - 150000) * 0.14
+    elif netcharge_B < 250000:
+        accumlate_B = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + 50000 * 0.14 + (netcharge_B - 200000) * 0.17
+    else:
+        accumlate_B = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + 50000 * 0.14 + (netcharge_B - 200000) * 0.17
+    print("Spouse Non Standard Rate Tax Total: ", accumlate_B)
+
+    # Get lowest Rate
+    if accumlate_B > standard_B:
+        B_Lowest = standard_B
+        print("Spouse Standard rate is used: $", B_Lowest)
+    else:
+        B_Lowest = accumlate_B
+        print ("Spouse non-standard rate is used: $", B_Lowest)
+    # B ends
+
+    print("--------------------------------------------------")
+
+    # Self and spouse lowest tax rate total
+    print("The total of self and spouse lowest tax rate: $", A_Lowest + B_Lowest)
+
+    print("--------------------------------------------------")
+    print("--------------------------------------------------")
+
+    # Joint calculation
+    joint_accumlate = 0
+    joint_income = income_A + income_B
+    joint_mpf = mpf_A + mpf_B
+    joint_netcharge = netcharge_A + netcharge_B
+    print("The joint income is: $", joint_income)
+    print("The joint MPF is: $", joint_mpf)
+
+    if joint_netcharge < 1:
+        joint_accumlate = 0 
+    if joint_netcharge < 50000:
+        joint_accumlate = joint_income * 0.02
+    elif joint_netcharge < 100000:
+        joint_accumlate = 50000 * 0.02 + (joint_netcharge - 50000) * 0.06
+    elif joint_netcharge < 150000:
+        joint_accumlate = 50000 * 0.02 + 50000 * 0.06 + (joint_netcharge - 100000) * 0.1
+    elif joint_netcharge < 200000:
+        joint_accumlate = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + (joint_netcharge - 150000) * 0.14
+    elif joint_netcharge < 250000:
+        joint_accumlate = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + 50000 * 0.14 + (joint_netcharge - 200000) * 0.17
+    else:
+        joint_accumlate = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + 50000 * 0.14 + (joint_netcharge - 200000) * 0.17
+    print("Joint Non Standard Rate Tax Total: ", joint_accumlate)
+    
+    # Joint ends
+
+
 
 def main(argv):
         print("Welcome to Tax Calculator")
@@ -90,6 +214,9 @@ def main(argv):
 
         if choice == 2:
             marriage()
+
+        if choice == 3:
+            test()
             
 
 if __name__ == "__main__":
