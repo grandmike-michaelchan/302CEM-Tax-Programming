@@ -55,7 +55,7 @@ def single():
     if netcharge < 1:
         accumlate = 0 
     if netcharge < 50000:
-        accumlate = income * 0.02
+        accumlate = netcharge * 0.02
     elif netcharge < 100000:
         accumlate = 50000 * 0.02 + (netcharge - 50000) * 0.06
     elif netcharge < 150000:
@@ -66,6 +66,8 @@ def single():
         accumlate = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + 50000 * 0.14 + (netcharge - 200000) * 0.17
     else:
         accumlate = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + 50000 * 0.14 + (netcharge - 200000) * 0.17
+    if accumlate <= 0:
+        accumlate = 0
     print("Non Standard Rate Tax Total: ", accumlate)
 
     #Recommendation
@@ -102,7 +104,7 @@ def marriage():
     if netcharge_A < 1:
         accumlate_A = 0 
     if netcharge_A < 50000:
-        accumlate_A = income_A * 0.02
+        accumlate_A = netcharge_A * 0.02
     elif netcharge_A < 100000:
         accumlate_A = 50000 * 0.02 + (netcharge_A - 50000) * 0.06
     elif netcharge_A < 150000:
@@ -113,6 +115,8 @@ def marriage():
         accumlate_A = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + 50000 * 0.14 + (netcharge_A - 200000) * 0.17
     else:
         accumlate_A = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + 50000 * 0.14 + (netcharge_A - 200000) * 0.17
+    if accumlate_A <= 0:
+        accumlate_A = 0
     print("Self Non Standard Rate Tax Total: ", accumlate_A)
 
     # Get lowest Rate
@@ -143,7 +147,7 @@ def marriage():
     if netcharge_B < 1:
         accumlate_B = 0 
     if netcharge_B < 50000:
-        accumlate_B = income_B * 0.02
+        accumlate_B = netcharge_B * 0.02
     elif netcharge_B < 100000:
         accumlate_B = 50000 * 0.02 + (netcharge_B - 50000) * 0.06
     elif netcharge_B < 150000:
@@ -154,6 +158,8 @@ def marriage():
         accumlate_B = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + 50000 * 0.14 + (netcharge_B - 200000) * 0.17
     else:
         accumlate_B = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + 50000 * 0.14 + (netcharge_B - 200000) * 0.17
+    if accumlate_B <= 0:
+        accumlate_B = 0
     print("Spouse Non Standard Rate Tax Total: ", accumlate_B)
 
     # Get lowest Rate
@@ -185,7 +191,7 @@ def marriage():
     if joint_netcharge < 1:
         joint_accumlate = 0 
     if joint_netcharge < 50000:
-        joint_accumlate = joint_income * 0.02
+        joint_accumlate = joint_netcharge * 0.02
     elif joint_netcharge < 100000:
         joint_accumlate = 50000 * 0.02 + (joint_netcharge - 50000) * 0.06
     elif joint_netcharge < 150000:
@@ -196,6 +202,8 @@ def marriage():
         joint_accumlate = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + 50000 * 0.14 + (joint_netcharge - 200000) * 0.17
     else:
         joint_accumlate = 50000 * 0.02 + 50000 * 0.06 + 50000 * 0.1 + 50000 * 0.14 + (joint_netcharge - 200000) * 0.17
+    if joint_accumlate <= 0:
+        joint_accumlate = 0
     print("Joint Non Standard Rate Tax Total: $", joint_accumlate)
     
     joint_standard = (joint_income - joint_mpf) * 0.15
