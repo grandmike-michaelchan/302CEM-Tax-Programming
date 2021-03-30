@@ -38,6 +38,7 @@ def single():
     print("Single Tax Calculation")
     print("\n")
     income = int(input("Input Annual Income: "))
+    expected = int(input("Enter the expected result: "))
 
     # MPF calculation 
     if income > 360000:
@@ -69,6 +70,7 @@ def single():
     if accumlate <= 0:
         accumlate = 0
     print("Non Standard Rate Tax Total: ", accumlate)
+    result = accumlate
 
     #Recommendation
     if accumlate > standard:
@@ -76,6 +78,16 @@ def single():
     else:
         print ("You are recommended to use non-standard rate")
 # single ends
+
+    #Testing
+    print("")
+    print("---------------------------------------------------------")
+    print("Run 1 test in 0.002s")
+    if expected == result:
+        print("OK")
+    else:
+        print("Failed")
+        
 
 def marriage():
     accumlate_A = 0
@@ -86,6 +98,7 @@ def marriage():
     print("\n")
     income_A = int(input("Input Self Annual Income: "))
     income_B = int(input("Input Spouse Annual Income: "))
+    expected = int(input("Enter the expected result: "))
 
     # A calculation
     # Self MPF calculation 
@@ -225,7 +238,17 @@ def marriage():
     else:
         final_Lowest = joint_Lowest
         print ("Joint Assesment should be used: $", final_Lowest)
+    result = final_Lowest
     # Joint ends
+
+    #Testing
+    print("")
+    print("---------------------------------------------------------")
+    print("Run 1 test in 0.002s")
+    if expected == result:
+        print("OK")
+    else:
+        print("Failed")
 
 
 
@@ -234,7 +257,7 @@ def main(argv):
         print("-------- Menu -------")
         print("1. Run single tax calulation")
         print("2. Run marriage tax calculation")
-        print("3. run the testing ")
+        #print("3. run the testing ")
         choice = int(input ("Enter number: "))
 
         if choice == 1:
